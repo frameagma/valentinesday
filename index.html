@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will You Be My Valentine?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Fredoka:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Floating hearts background -->
+  <div id="hearts-container" class="hearts-bg" aria-hidden="true"></div>
+
+  <!-- Background music (put your mp3 in /music and update the src) -->
+  <!-- Invisible iframe trick to enable unmuted autoplay (per Stack Overflow solution) -->
+  <iframe src="https://olafwempe.com/mp3/silence/silence.mp3" type="audio/mp3" allow="autoplay" id="silent-audio-iframe" style="display: none;"></iframe>
+  <!-- Using video tag for better autoplay support per Chrome policy -->
+  <video id="bg-music" src="music/Cigarettes After Sex Late Night Drive Songs (2).mp3" preload="auto" loop autoplay playsinline style="display: none;"></video>
+  <!-- Yippe celebration sound -->
+  <audio id="yippe-audio" src="music/yippe.m4a" preload="auto"></audio>
+  <!-- Flower center surprise audio -->
+  <audio id="flower-audio" preload="auto">
+    <source src="music/flower.mp3" type="audio/mpeg">
+    <source src="music/flower.m4a" type="audio/mp4">
+  </audio>
+  <button id="music-toggle" class="music-toggle" type="button" aria-pressed="false">
+    ▶ Play music
+  </button>
+
+  <div class="container">
+    <div id="question-page" class="page active">
+      <div class="content">
+        <div class="heart-icon"><div class="loader"><div></div></div></div>
+        <h1 class="question-title">Will you be my Valentine?</h1>
+        <div class="button-container">
+          <button id="yes-btn" class="valentine-btn yes-btn">Yes</button>
+          <button id="no-btn" class="valentine-btn no-btn">No</button>
+        </div>
+        </div>
+      </div>
+
+    <!-- Celebration Page -->
+    <div id="celebration-page" class="page">
+      <div class="yes-media-background" id="yes-media-background"></div>
+      <div class="content">
+        <div class="celebration-heart"><div class="loader"><div></div></div></div>
+        <div class="celebration-text-wrapper">
+          <h1 class="celebration-text">YIPPPEEEEEEEEEEEEEEEEEEEE</h1>
+          </div>
+        <button id="view-gallery-btn" class="valentine-btn yes-btn" style="margin-top: 2rem;">Continue</button>
+        <div class="confetti-container" id="confetti-container"></div>
+          </div>
+        </div>
+
+    <!-- Gallery Flipbook Page -->
+    <div id="gallery-page" class="page">
+      <div class="gallery-header">
+        <h2 class="gallery-title">My favorite girl</h2>
+        <button id="back-from-gallery" class="back-btn">← Back</button>
+      </div>
+      <div class="flipbook-container">
+        <div class="flipbook-viewer" id="flipbook-viewer"></div>
+      </div>
+      <div class="gallery-counter">
+        <span id="current-image">1</span> / <span id="total-images">0</span>
+      </div>
+          </div>
+
+    <div id="reasons-page" class="page">
+      <div class="content reasons-content">
+        <div id="reasons-center-backdrop" class="reasons-center-backdrop" aria-hidden="true"></div>
+
+        <h2 class="section-title">Why I Love You</h2>
+        <p class="reasons-flower-hint">Pick a petal</p>
+        <div class="reasons-flower-wrap" id="reasons-flower-wrap">
+          <div class="reasons-flower-glow"></div>
+          <div class="reasons-flower" id="reasons-flower">
+            <div class="flower-center" id="flower-center"></div>
+            <div class="flower-petals" id="flower-petals"></div>
+          </div>
+          <div class="reasons-sparkle-container" id="reasons-sparkle-container" aria-hidden="true"></div>
+        </div>
+        <div class="reasons-message" id="reasons-message"></div>
+        <div class="reasons-nav">
+          <button id="back-from-reasons" class="back-btn">← Back</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="jokes-page" class="page">
+      <div class="content">
+        <h2 class="section-title">Our Inside Jokes</h2>
+        <p class="jokes-intro">Moments we share—tap a card to see the memory.</p>
+        <div class="jokes-container" id="jokes-container"></div>
+        <button id="back-from-jokes" class="back-btn">← Back</button>
+      </div>
+    </div>
+    <div id="joke-image-modal" class="joke-image-modal" aria-hidden="true">
+      <div class="joke-image-modal-backdrop"></div>
+      <div class="joke-image-modal-content">
+        <button type="button" class="joke-image-modal-close" id="joke-image-modal-close" aria-label="Close">×</button>
+        <img id="joke-image-modal-img" class="joke-image-modal-img" src="" alt="">
+        <div id="joke-image-modal-combo" class="joke-image-modal-combo" style="display: none;">
+          <div class="joke-image-modal-video-wrap">
+            <div id="joke-image-modal-iframe-container" class="joke-image-modal-iframe-container">
+              <iframe id="joke-image-modal-iframe" class="joke-image-modal-iframe" src="" title="Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <video id="joke-image-modal-video" class="joke-image-modal-video" controls playsinline></video>
+            <a id="joke-image-modal-watch-link" class="joke-image-modal-watch-link" href="#" target="_blank" rel="noopener" style="display: none;">Watch on YouTube</a>
+          </div>
+          <img id="joke-image-modal-combo-img" class="joke-image-modal-combo-img" src="" alt="">
+          <img id="joke-image-modal-combo-img2" class="joke-image-modal-combo-img" src="" alt="" style="display: none;">
+          <img id="joke-image-modal-combo-img3" class="joke-image-modal-combo-img" src="" alt="" style="display: none;">
+        </div>
+        <p id="joke-image-modal-caption" class="joke-image-modal-caption"></p>
+      </div>
+    </div>
+
+    <div id="letter-page" class="page">
+      <div class="content">
+        <div class="letter-container">
+          <h2 class="section-title">A Letter For You</h2>
+          <div class="letter-content" id="letter-content">
+            <!-- Letter content will be added here -->
+          </div>
+          <button id="back-from-letter" class="back-btn" style="margin-top: 2rem;">← Back</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hub: pick which section to open -->
+    <div id="hub-page" class="page">
+      <div class="content hub-content">
+        <h2 class="hub-title">I made these just for you</h2>
+        <p class="hub-intro">Tap a card to open your surprise</p>
+        <div class="hub-buttons" id="hub-buttons">
+          <button type="button" class="hub-btn hub-btn-reasons" data-page="reasons"><span class="hub-btn-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></span><span class="hub-btn-title">Why I Love You</span><span class="hub-btn-subtext">Reasons that matter</span></button>
+          <button type="button" class="hub-btn hub-btn-jokes" data-page="jokes"><span class="hub-btn-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5L12 2z"/></svg></span><span class="hub-btn-title">Our Inside Jokes</span><span class="hub-btn-subtext">Moments we share</span></button>
+          <button type="button" class="hub-btn hub-btn-openwhen" data-page="open-when"><span class="hub-btn-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg></span><span class="hub-btn-title">Open When...</span><span class="hub-btn-subtext">Letters for later</span></button>
+          <button type="button" id="hub-gallery-btn" class="hub-btn hub-btn-gallery hub-gallery-btn"><span class="hub-btn-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></span><span class="hub-btn-title">Our memories</span><span class="hub-btn-subtext">Photos of us</span></button>
+        </div>
+        <button id="back-from-hub" class="back-btn" style="margin-top: 2rem;">← Back</button>
+      </div>
+    </div>
+
+    <div id="open-when-page" class="page">
+      <div class="content">
+        <h2 class="section-title">Open When...</h2>
+        <p class="open-when-intro">Letters for you to open whenever you need them.</p>
+        <div class="open-when-grid" id="open-when-grid"></div>
+        <button id="back-from-open-when" class="back-btn">← Back</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Flower center surprise modal (play button, blocks until audio done) -->
+  <div id="flower-audio-modal" class="flower-audio-modal" aria-hidden="true">
+    <div class="flower-audio-modal-backdrop"></div>
+    <div class="flower-audio-modal-content">
+      <button type="button" id="flower-audio-play-btn" class="flower-audio-play-btn" aria-label="Play message">▶</button>
+    </div>
+  </div>
+
+  <div id="letter-modal" class="letter-modal" aria-hidden="true">
+    <div class="letter-modal-backdrop"></div>
+    <div class="letter-modal-paper">
+      <button type="button" class="letter-modal-close" id="letter-modal-close" aria-label="Close">×</button>
+      <div class="letter-modal-content">
+        <h3 class="letter-modal-title" id="letter-modal-title"></h3>
+        <div class="letter-modal-body" id="letter-modal-body"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mystery box – only appears when all three sections are opened; click to open gallery -->
+  <div id="mystery-box-backdrop" class="mystery-box-backdrop" aria-hidden="true"></div>
+  <button type="button" id="mystery-box" class="mystery-box" aria-label="Open our memories">
+    <span class="mystery-box-icon">?</span>
+    <span class="mystery-box-label">Open me</span>
+  </button>
+
+  <div id="no-popup" class="no-popup">
+    <div class="no-popup-content">
+      <button class="no-popup-close" id="no-popup-close">×</button>
+      <div class="no-popup-scene">
+        <img id="dog-horse-image" class="dog-horse-image" src="images/shiba-meme.png" alt="Shiba Inu meme" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="dog-horse-fallback" style="display: none; flex-direction: column; align-items: center; gap: 1rem; font-size: 4rem;">
+          <div>🐕</div>
+          <p style="font-size: 1.2rem; color: var(--dark); font-family: var(--font-body);">HOL DA FAK UP<br>TRY AGAIN</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="gallery-data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
