@@ -663,7 +663,7 @@
       { text: 'Remember when...', image: 'images/16B847D6-0CE6-46CA-9A9F-090FEACB33C1.jpeg', caption: 'I threatened to hit the dog along with the horse if you didnt accept my money so you can go eat.' },
       { text: 'That one time you...', image: 'images/EE1FB82F-647A-448D-A5DD-D7DAF0692CCE.jpeg', caption: 'Waited really long for bread soup just for it to be mid. Then me posting it on my story and my whole family wondering who tf you were.' },
       { text: 'My favorite photo of you...', image: 'images/18E619BF-B84B-4B03-8FE1-16F722F9E7FA.jpeg', caption: 'You look so pretty and your smile was so genuine here and you seemed soooo happy :)' },
-      { text: 'The only thing we understand...', videoMp4: 'images/chicken on tree scream #memes #funny #dc2.mp4', image: 'images/horse.jfif', caption: 'How much you love horses and that one screaming chicken.' },
+      { text: 'The only thing we understand...', videoMp4: 'images/chicken-on-tree-scream.mp4', image: 'images/horse.jfif', caption: 'How much you love horses and that one screaming chicken.' },
       { text: 'That inside joke we always laugh about...', image: 'images/libby.jpeg', image2: 'images/BB5D57CD-17B1-41E8-A915-DB8D06E13140.jpeg', caption: 'How fat our kids are (Libby & TinTin )' },
       { text: 'The way you and I...', image: 'images/4A5B03CD-44BD-45B6-91E5-49E728028A6B.jpeg', image2: 'images/FC79085D-00D9-48AE-9055-4955B97BFC4B.jpeg', image3: 'images/3F8BAD86-AB03-4A92-8CF6-A1CD690ECF45.jpeg', caption: 'Are lowkey autistic and weird...' },
       { text: 'One special moment...', image: 'images/33A3F877-F8E6-48B3-A694-BC890377EA13.jpeg', caption: 'When I bought you flowers and it turned out to be dead AF!' },
